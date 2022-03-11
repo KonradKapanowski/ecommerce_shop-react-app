@@ -41,6 +41,7 @@ export function Checkout({cart, order, error, onCaptureCheckout}) {
     const next = (data) => {
         setShippingData(data);
         nextStep();
+        console.log(data)
     }
 
 

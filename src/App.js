@@ -40,15 +40,12 @@ export function App() {
         const {cart} = await commerce.cart.remove(productId);
         setCart(cart);
     }
-    const refreshCart = async() => {
-        const newCart = await  commerce.cart.refresh();
-        setCart(newCart);
-    }
+
     const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
         try{
             const incomingOrder = await  commerce.checkout.capture(checkoutTokenId, newOrder);
             setOrder(incomingOrder);
-            refreshCart();
+            setCart({})
         }catch(error){
             setErrorMessage(error.data.error.message);
         }

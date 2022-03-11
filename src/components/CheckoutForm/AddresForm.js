@@ -48,36 +48,32 @@ export function AddressForm({checkoutToken, next }) {
         setShippingOption(options[0].id)
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        next({shippingCountry, shippingSubdivision, shippingOption, name, lastname, address,email,city, zipcode });
+    }
+
 
     useEffect(() => {
-            let abortController = new AbortController();
             fetchSippingCountries(checkoutToken.id);
-            return () =>{
-                abortController.abort();
-            }
+
     }, []);
 
     useEffect(() => {
-            let abortController = new AbortController();
             if(shippingCountry) {fetchSubdivisions(shippingCountry)}
-            return () =>{
-                abortController.abort();
-            }
+
     }, [shippingCountry]);
 
     useEffect(() => {
-            let abortController = new AbortController();
             if(shippingSubdivision) {fetchShippingOptions(checkoutToken.id, shippingCountry, shippingSubdivision)}
-            return () =>{
-                abortController.abort();
-            }
+
     }, [shippingSubdivision]);
 
     return (
         <>
             <Typography variant='h6' gutterBottom> Shipping Address</Typography>
             <FormProvider {...methods}>
-                <form onSubmit={methods.handleSubmit((data) => next({...data, shippingCountry, shippingSubdivision, shippingOption, name, lastname, address,email,city, zipcode }))}>
+                <form onSubmit={handleSubmit}>
                     <Grid container spacing={3}>
                         <FormInput required name='firstName' label='First name' onChange={e => setName(e.target.value)}/>
                         <FormInput required name='lastName' label='Last name' onChange={e => setLastName(e.target.value)}/>
