@@ -12,17 +12,17 @@ export function PaymentForm({checkoutToken, backStep, shippingData, onCaptureChe
 
         if(!stripe || !elements) return;
         const cardElement = elements.getElement(CardElement);
-        const { error, paymentMethod } = await stripe.createPaymentMethod({ type: 'card', card: cardElement})
+        const { error, paymentMethod } = await stripe.createPaymentMethod({ type: 'card', card: cardElement});
 
         if(error){
-            console.log(error)
+            console.log(error);
         }else{
             const orderData = {
                 line_items: checkoutToken.live.line_items,
                 customer: {
                     firstname: shippingData.name,
                     lastname: shippingData.lastname,
-                    email: shippingData.email
+                    email: shippingData.email,
                 },
                 shipping: {
                     name: 'International',
@@ -30,13 +30,13 @@ export function PaymentForm({checkoutToken, backStep, shippingData, onCaptureChe
                     town_city:shippingData.city,
                     county_state: shippingData.shippingSubdivision,
                     postal_zip_code: shippingData.zipcode,
-                    country: shippingData.shippingCountry
+                    country: shippingData.shippingCountry,
                 },
                 fulfillment: { shipping_method: shippingData.shippingOption},
                 payment: {
                     gateway: 'stripe',
                     stripe: {
-                        payment_method_id: paymentMethod.id
+                        payment_method_id: paymentMethod.id,
                     }
                 }
             }

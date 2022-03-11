@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {commerce} from "./lib/commerce";
-
 import {Products} from "./components/Products/Products";
 import {Header} from "./components/Header/Header";
 import {Cart} from "./components/Cart/Cart";
@@ -20,51 +19,47 @@ export function App() {
     }
 
     const fetchCart = async () => {
-        const cart = await commerce.cart.retrieve()
-        setCart(cart)
+        const cart = await commerce.cart.retrieve();
+        setCart(cart);
     }
 
     const handleAddToCart = async (productId, quantity) =>{
-        const {cart} = await commerce.cart.add(productId, quantity)
-
-        setCart(cart)
+        const {cart} = await commerce.cart.add(productId, quantity);
+        setCart(cart);
     }
     const handleUpdateCartQuantity = async (productId, quantity) => {
-        const {cart} = await commerce.cart.update(productId, { quantity })
-
-        setCart(cart)
+        const {cart} = await commerce.cart.update(productId, { quantity });
+        setCart(cart);
     }
     const handleEmptyCart = async() => {
         const {cart} = await commerce.cart.empty();
-
-        setCart(cart)
+        setCart(cart);
     }
 
     const handleRemoveFromCart = async(productId) => {
         const {cart} = await commerce.cart.remove(productId);
-
-        setCart(cart)
+        setCart(cart);
     }
     const refreshCart = async() => {
         const newCart = await  commerce.cart.refresh();
-        setCart(newCart)
+        setCart(newCart);
     }
     const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
         try{
             const incomingOrder = await  commerce.checkout.capture(checkoutTokenId, newOrder);
-            setOrder(incomingOrder)
+            setOrder(incomingOrder);
             refreshCart();
         }catch(error){
             setErrorMessage(error.data.error.message);
         }
-
-    }
+    };
 
     useEffect(() => {
         fetchProducts();
         fetchCart();
     }, []);
-console.log(cart)
+
+
     return (
         <Router>
             <div>
