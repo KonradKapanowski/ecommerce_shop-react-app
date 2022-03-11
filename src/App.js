@@ -16,7 +16,7 @@ export function App() {
 
     const fetchProducts = async () => {
         const { data } = await commerce.products.list();
-        setProducts(                               data);
+        setProducts(data);
     }
 
     const fetchCart = async () => {
