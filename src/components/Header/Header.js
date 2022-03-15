@@ -59,9 +59,8 @@ const  styles = {
     }
 }
 
-
-
 export function Header({totalItems}) {
+
     const classes = useStyles();
     const location = useLocation();
     const match = matchPath({path: '/'},location.pathname)
@@ -87,9 +86,9 @@ export function Header({totalItems}) {
                     <Button component={Link} to='/login' className={classes.login}>LOGIN</Button>
                     <Menu right styles={styles}>
                         <MenuList>
-                            <MenuItem> <HomeIcon fontSize="large"/> <a className={classes.menuItem} id="home"  href="/">Home</a></MenuItem>
-                            <MenuItem> <ContactPageIcon fontSize="large"/> <a className={classes.menuItem} id="Contact"  href="/contact">Contact</a></MenuItem>
-                            <MenuItem> <LockIcon fontSize="large"/> <a className={classes.menuItem} id="Login"  href="/login">LOGIN</a></MenuItem>
+                            <MenuItem className={classes.menuItem} component={Link} to='/'> <HomeIcon fontSize="large" sx={{marginRight: 5}}/> Home</MenuItem>
+                            <MenuItem className={classes.menuItem} component={Link} to='/contact'> <ContactPageIcon fontSize="large" sx={{marginRight: 5}}/>Contact</MenuItem>
+                            <MenuItem className={classes.menuItem} component={Link} to='/login'> <LockIcon fontSize="large" sx={{marginRight: 5}}/> LOGIN</MenuItem>
                         </MenuList>
                     </Menu>
                 </Toolbar>
@@ -97,5 +96,3 @@ export function Header({totalItems}) {
         </div>
     );
 }
-// #F2F4FF
-//

@@ -49,7 +49,7 @@ export default makeStyles((theme) => ({
         fontFamily: 'Anton',
         fontStyle: 'sans-serif',
         fontSize: '2rem',
-        marginLeft: '1rem',
+
 
     }
 }));
