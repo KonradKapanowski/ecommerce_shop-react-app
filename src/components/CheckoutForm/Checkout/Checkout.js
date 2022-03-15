@@ -1,10 +1,11 @@
 import React, { useState, useEffect }from 'react';
-import { Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button, Box, Container} from "@material-ui/core";
+import { Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button, Box, Container, CssBaseline} from "@material-ui/core";
 import useStyles from './style'
 import {AddressForm} from "../AddresForm";
 import {PaymentForm} from "../PaymentForm";
 import {commerce} from "../../../lib/commerce";
 import {Link} from "react-router-dom";
+import {useNavigate} from 'react-router-dom'
 
 
 const steps = ['Shipping address', 'Payment details']
@@ -15,23 +16,22 @@ export function Checkout({cart, order, error, onCaptureCheckout}) {
     const [checkoutToken, setCheckoutToken] = useState(null)
     const [activeStep, setActiveStep] = useState(0)
     const [shippingData, setShippingData] = useState({})
+    let navigate = useNavigate()
 
 
     useEffect(() => {
-        let abortController = new AbortController();
+
         const generateToken = async () => {
             try{
                 const token = await  commerce.checkout.generateToken(cart.id, {type: 'cart'})
                 setCheckoutToken(token)
             }catch(error){
-
+                navigate('/');
             }
         }
         if(!cart.id) return;
          generateToken();
-        return () =>{
-            abortController.abort();
-        }
+
     }, [cart.id])
 
     const nextStep = () => setActiveStep(activeStep => activeStep + 1)
@@ -74,6 +74,7 @@ export function Checkout({cart, order, error, onCaptureCheckout}) {
 
     return (
         <>
+            <CssBaseline/>
             <Box className={classes.toolbar}/>
             <Container className={classes.layout}>
                 <Paper className={classes.paper}>
