@@ -1,4 +1,4 @@
-import React  from 'react';
+import React, {useState} from 'react';
 import {AppBar, Toolbar, IconButton, Badge, MenuItem, Typography, Box, Button, MenuList} from "@material-ui/core";
 import {ShoppingCart} from "@material-ui/icons";
 import logo from '../../assets/Shop.png'
@@ -59,8 +59,17 @@ const  styles = {
     }
 }
 
-export function Header({totalItems}) {
 
+
+export function Header({totalItems}) {
+    const [isOpen, setOpen] = useState(false)
+
+    const handleIsOpen = () => {
+        setOpen(!isOpen)
+    }
+    const closeSideBar = () => {
+        setOpen(false)
+    }
     const classes = useStyles();
     const location = useLocation();
     const match = matchPath({path: '/'},location.pathname)
@@ -84,11 +93,13 @@ export function Header({totalItems}) {
                         </Box>
                     )}
                     <Button component={Link} to='/login' className={classes.login}>LOGIN</Button>
-                    <Menu right styles={styles}>
+                    <Menu right styles={styles} isOpen={isOpen}
+                          onOpen={handleIsOpen}
+                          onClose={handleIsOpen}>
                         <MenuList>
-                            <MenuItem className={classes.menuItem} component={Link} to='/'> <HomeIcon fontSize="large" sx={{marginRight: 5}}/> Home</MenuItem>
-                            <MenuItem className={classes.menuItem} component={Link} to='/contact'> <ContactPageIcon fontSize="large" sx={{marginRight: 5}}/>Contact</MenuItem>
-                            <MenuItem className={classes.menuItem} component={Link} to='/login'> <LockIcon fontSize="large" sx={{marginRight: 5}}/> LOGIN</MenuItem>
+                            <MenuItem className={classes.menuItem} component={Link} to='/' onClick={closeSideBar}> <HomeIcon fontSize="large" sx={{marginRight: 5}}/> Home</MenuItem>
+                            <MenuItem className={classes.menuItem} component={Link} to='/contact'  onClick={closeSideBar}> <ContactPageIcon fontSize="large" sx={{marginRight: 5}}/>Contact</MenuItem>
+                            <MenuItem className={classes.menuItem} component={Link} to='/login'  onClick={closeSideBar}> <LockIcon fontSize="large" sx={{marginRight: 5}}/> LOGIN</MenuItem>
                         </MenuList>
                     </Menu>
                 </Toolbar>

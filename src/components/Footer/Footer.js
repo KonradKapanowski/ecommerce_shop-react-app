@@ -20,7 +20,7 @@ export function Footer() {
                 FIND US
             </Typography>
             <br/>
-            <Box>
+            <Box className={classes.logocontainer}>
                 <Link href='https://www.facebook.com/' color='primary'><FacebookIcon className={classes.logo} sx={{ fontSize: 40 }}/></Link>
                 <Link href='https://twitter.com/'><TwitterIcon className={classes.logo} sx={{ fontSize: 40 }}/></Link>
                 <Link href='https://www.linkedin.com/'><LinkedInIcon className={classes.logo} sx={{ fontSize: 40 }}/></Link>

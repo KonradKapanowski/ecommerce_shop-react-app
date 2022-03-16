@@ -1,12 +1,14 @@
 import { makeStyles} from '@material-ui/core/styles';
 
+const height = '200px'
+
 export default makeStyles((theme)=>({
     divContainer: {
         paddingTop: '5rem',
         flexGrow: 1,
         backgroundColor: theme.palette.background.default,
-        padding: theme.spacing(3),
-        marginBottom: '57px'
+        padding: theme.spacing(3)
+
     },
     paper: {
         marginTop: theme.spacing(4),

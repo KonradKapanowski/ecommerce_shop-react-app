@@ -5,6 +5,6 @@ export default makeStyles((theme) => ({
     content: {
         backgroundColor: theme.palette.background.default,
         padding: theme.spacing(6),
-        margin: 0
+        marginBottom: '150px'
     }
 }));

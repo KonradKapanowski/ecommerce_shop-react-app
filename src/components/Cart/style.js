@@ -4,6 +4,7 @@ export default makeStyles((theme) => ({
     toolbar: theme.mixins.toolbar,
     title: {
         marginTop: '5%',
+        textAlign: 'center'
     },
     emptyButton: {
         minWidth: '150px',
@@ -20,10 +21,26 @@ export default makeStyles((theme) => ({
     link: {
         textDecoration: 'none',
     },
+    link1: {
+        textDecoration: 'none',
+        color:'white',
+    },
     cardDetails: {
         display: 'flex',
         marginTop: '10%',
         width: '100%',
         justifyContent: 'space-between',
     },
+    emptyCart: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '10px'
+    },
+    container:{
+        flexGrow: 1,
+        // backgroundColor: theme.palette.background.default,
+        padding: theme.spacing(3),
+        marginBottom: '472px'
+    }
 }));

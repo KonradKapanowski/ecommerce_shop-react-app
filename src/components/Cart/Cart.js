@@ -2,6 +2,7 @@ import React from 'react';
 import {Container, Typography, Box, Grid, Button } from "@material-ui/core";
 import {Link} from 'react-router-dom';
 
+
 import useStyles from './style';
 import {CartItem} from "./CartItem/CartItem";
 
@@ -9,9 +10,12 @@ export function Cart({cart, handleUpdateCartQuantity, handleEmptyCart, handleRem
     const classes = useStyles()
 
     const EmptyCart= () =>(
+        <Box className={classes.emptyCart}>
         <Typography variant='subtitle2'>You have no items in your shopping cart,
-        <Link to='/' className={classes.link}> start buying something!</Link>!
+        <Link to='/' className={classes.link} color='secondary'> start buying something!</Link>!
         </Typography>
+            <Button variant='contained' color='secondary'><Link to='/' className={classes.link1}>GO TO PRODUCTS </Link></Button>
+        </Box>
     )
     const FilledCart= () =>(
         <>
@@ -36,7 +40,7 @@ export function Cart({cart, handleUpdateCartQuantity, handleEmptyCart, handleRem
     if(!cart.line_items) return "Loading..."
 
     return (
-        <Container>
+        <Container className={classes.container}>
             <Box className={classes.toolbar}/>
             <Typography className={classes.title} variant='h3' gutterBottom>Your Shopping Cart</Typography>
             { !cart.line_items.length ? <EmptyCart/> : <FilledCart/>}
