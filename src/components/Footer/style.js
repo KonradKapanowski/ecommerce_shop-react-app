@@ -35,7 +35,4 @@ export default makeStyles(() => ({
 
         fontSize: '3rem'
     },
-    logocontainer:{
-
-    }
 }));

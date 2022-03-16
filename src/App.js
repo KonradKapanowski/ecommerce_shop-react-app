@@ -66,9 +66,9 @@ export function App() {
             <div>
                 <Header totalItems={cart.total_items}/>
                 <Routes>
-                    <Route path='/' element={<><Products products={products} onAddToCart={handleAddToCart}/><Footer/></>}/>
-                    <Route path='login/*' element={<><Login/><Footer/></>} />
-                    <Route path='contact/*' element={<><Contact/> <Footer/></>} />
+                    <Route path='/' element={<><Products products={products} onAddToCart={handleAddToCart}/></>}/>
+                    <Route path='login/*' element={<><Login/></>} />
+                    <Route path='contact/*' element={<><Contact/></>} />
                     <Route path='cart/*' element={
                         <Cart cart={cart}
                               handleUpdateCartQuantity={handleUpdateCartQuantity}
@@ -78,7 +78,7 @@ export function App() {
                     />
                     <Route path='checkout/*' element={<Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage}/>}/>
                 </Routes>
-
+                <Footer/>
             </div>
         </Router>
     );
