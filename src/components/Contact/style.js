@@ -1,7 +1,5 @@
 import { makeStyles} from '@material-ui/core/styles';
 
-const height = '200px'
-
 export default makeStyles((theme)=>({
     divContainer: {
         paddingTop: '5rem',

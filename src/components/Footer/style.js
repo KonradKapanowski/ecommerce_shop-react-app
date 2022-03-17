@@ -10,7 +10,6 @@ export default makeStyles(() => ({
         alignItems:'center',
         backgroundColor:'black',
         zIndex: 1101,
-        position: 'fixed',
         left: 0,
         bottom: 0,
         right: 0,
